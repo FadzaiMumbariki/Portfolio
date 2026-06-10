@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Villarossin",
+    "cat": "Business",
+    "desc": "A responsive website project for Villa Rossini with modern UI design..",
+    "tech": ["Html", " CSS", "Supabase", "JavaScript"],
+    "github": "https://github.com/FadzaiMumbariki/villarossini.git",
+    "demo": " https://fadzaimumbariki.github.io/villarossini/",
+    "img": "./assets/screenshot_2026-06-09_131509.png"
+  },
+  {
+    "name": "Baby -clothing",
+    "cat": "Business",
+    "desc": "A modern e-commerce web project for baby clothing with a clean, responsive user interface..",
+    "tech": ["Html", "Css", "Javascript"],
+    "github": "https://github.com/FadzaiMumbariki/baby_clothing.git",
+    "demo": " https://fadzaimumbariki.github.io/baby_clothing/",
+    "img": "./assets/screenshot_2026-04-01_134705.png"
+  },
+  {
+    "name": "Weather App",
+    "cat": "Business",
+    "desc": "A modern weather application that provides real-time weather updates with a clean and responsive UI..",
+    "tech": ["Html",  " CSS", "JavaScript"],
+    "github": "https://github.com/FadzaiMumbariki/Weather_Forecast.git",
+    "demo": " https://fadzaimumbariki.github.io/Weather_Forecast/",
+    "img": "./assets/screenshot_2026-06-09_133712.png"
+  },
+  {
+    "name": "Form",
+    "cat": "Gift",
+    "desc": "A responsive and user-friendly form built with modern web technologies for collecting and validating user input.",
+    "tech": [ "React", "Styled Components"],
+    "github": "https://github.com/FadzaiMumbariki/form.git",
+    "demo": "  https://form-one-murex.vercel.app/",
+    "img": "./assets/screenshot_2026-06-09_140053.png"
+  },
+  {
+    "name": "Personal Portfolio",
+    "cat": "Personal",
+    "desc": "A personal portfolio website showcasing projects, skills, and experience with a modern responsive design.",
+    "tech": ["Html", "Css", "JavaScript"],
+    "github": "https://github.com/FadzaiMumbariki/my_portfolio.git",
+    "demo": " https://fadzaimumbariki.github.io/my_portfolio/",
+    "img": "./assets/screenshot_2026-06-09_141257.png"
+  }
+  
+]
