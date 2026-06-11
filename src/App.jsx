@@ -4,7 +4,7 @@ import Nav from './Nav';
 import Hero from './Hero';
 import About from './About';
 import Projects from './Projects';
-import Contact from './Contact';
+import Contact from './contact';
 import Footer from './Footer';
 import { portfolioData } from './portfolioData';
 import { lightTheme, darkTheme } from './Theme';
