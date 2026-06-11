@@ -2,10 +2,10 @@ import projects from './projects.json';
 
 export const portfolioData = {
   hero: {
-    tagline: "Junior Software Developer | React • TypeScript • UI Engineering",
+    
     name: "Fadzai Mumbariki",
     title: "I build responsive, accessible, and user-focused web applications.",
-    description: "I am a Junior software developer based in Zimbabwe, specializing in building responsive, accessible, and user-focused web applications. I have a strong passion for crafting clean, scalable, and maintainable code, with a focus on modern frontend development using React, TypeScript, and component-driven architecture.",
+    description: "Junior Software Developer passionate about creating scalable, accessible, and modern web applications..",
     image: "./assets/116606f4-5e39-4b70-9676-bd9e0b85df3b.jpeg",
     imageAlt: "Hero illustration",
     email: "your-email@example.com",
