@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { TextField } from '@mui/material';
+import { TextField } from '@mui/material'; // <-- Added TextField import
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import SendIcon from '@mui/icons-material/Send';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircle';
 
 const slideUp = keyframes`
   from {
@@ -17,154 +17,6 @@ const slideUp = keyframes`
     opacity: 1;
   }
 `;
-
-const Contact = ({ data }) => {
-  if (!data) return null;
-
-  const [status, setStatus] = useState('');
-
-  const getIcon = (name) => {
-    switch (name.toLowerCase()) {
-      case 'github':   return <GitHubIcon />;
-      case 'linkedin': return <LinkedInIcon />;
-      case 'email':    return <EmailIcon />;
-      default:         return null;
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setStatus('sending');
-
-    const formData = new FormData(e.target);
-    formData.append('access_key', 'c05f3b42-aecc-4a0d-8dd0-d2ef45312618');
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData,
-      });
-
-      const result = await response.json();
-      if (result.success) {
-        setStatus('success');
-        e.target.reset();
-      } else {
-        setStatus('error');
-      }
-    } catch (error) {
-      setStatus('error');
-    }
-  };
-
-  return (
-    <Section id="contact">
-      <Inner>
-        <ContactGrid>
-
-          {/* ── Left side: text reveal ── */}
-          <div>
-            <RevealClip>
-              <RevealText delay="0.05s"><Eyebrow>{data.eyebrow}</Eyebrow></RevealText>
-            </RevealClip>
-
-            <RevealClip>
-              <RevealText delay="0.18s"><Heading>{data.heading}</Heading></RevealText>
-            </RevealClip>
-
-            <RevealClip>
-              <RevealText delay="0.30s"><Body>{data.body}</Body></RevealText>
-            </RevealClip>
-
-            <RevealClip>
-              <RevealText delay="0.42s"><ContactIcons>
-                {data.socials?.map((s) => (
-                  <IconLink
-                    key={s.name}
-                    href={s.link}
-                    target={s.link.startsWith('http') ? '_blank' : undefined}
-                    rel={s.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-                    aria-label={s.name}
-                  >
-                    {getIcon(s.name)}
-                  </IconLink>
-                ))}
-              </ContactIcons></RevealText>
-            </RevealClip>
-          </div>
-
-          {/* ── Right side: form fields ── */}
-          <Form onSubmit={handleSubmit}>
-
-            {/* NAME + EMAIL row */}
-            <AnimatedField delay="0.15s">
-              <FormRow>
-                <StyledTextField 
-                  id="name" 
-                  name="name" 
-                  label="Name" 
-                  variant="outlined" 
-                  required 
-                />
-                <StyledTextField 
-                  id="email" 
-                  name="email" 
-                  label="Email" 
-                  type="email" 
-                  variant="outlined" 
-                  required 
-                />
-              </FormRow>
-            </AnimatedField>
-
-            {/* SUBJECT */}
-            <AnimatedField delay="0.30s">
-              <StyledTextField 
-                id="subject" 
-                name="subject" 
-                label="Subject" 
-                variant="outlined" 
-                required 
-              />
-            </AnimatedField>
-
-            {/* MESSAGE */}
-            <AnimatedField delay="0.45s">
-              <StyledTextField 
-                id="message" 
-                name="message" 
-                label="Message" 
-                variant="outlined" 
-                multiline 
-                rows={4} 
-                required 
-              />
-            </AnimatedField>
-
-            {/* SUBMIT */}
-            <FormSubmit type="submit" disabled={status === 'sending'}>
-              {status === 'sending' ? 'Sending...' : (
-                <>Send Message <SendIcon /></>
-              )}
-            </FormSubmit>
-
-            {status === 'success' && (
-              <SuccessMsg>
-                <CheckCircleOutlineIcon /> Message sent successfully!
-              </SuccessMsg>
-            )}
-            {status === 'error' && (
-              <SuccessMsg style={{ color: '#ef4444' }}>
-                Oops! Something went wrong. Please try again.
-              </SuccessMsg>
-            )}
-          </Form>
-
-        </ContactGrid>
-      </Inner>
-    </Section>
-  );
-};
 
 const Section = styled.section`
   padding: calc(${({ theme }) => theme.sizes.navH} + 5rem) ${({ theme }) => theme.sizes.pad} 6rem;
@@ -190,12 +42,12 @@ const ContactGrid = styled.div`
   }
 `;
 
-const RevealClip = styled.div`
+const RevealClip = styled.span`
   overflow: hidden;
   display: block;
 `;
 
-const RevealText = styled.div`
+const RevealText = styled.span`
   display: block;
   opacity: 0;
   animation: ${slideUp} 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -283,9 +135,11 @@ const AnimatedField = styled.div`
   animation-delay: ${({ delay }) => delay || '0s'};
 `;
 
+/* ── Custom Styled wrapper for Material UI's TextField ── */
 const StyledTextField = styled(TextField)`
   width: 100%;
 
+  /* Optional overrides to blend MUI inputs seamlessly with your Theme variables */
   & .MuiInputLabel-root {
     font-family: ${({ theme }) => theme.fonts.mono};
     font-size: 0.75rem;
@@ -303,6 +157,7 @@ const StyledTextField = styled(TextField)`
     color: ${({ theme }) => theme.colors.ink};
     background: ${({ theme }) => theme.colors.paper};
 
+    /* Filled Variant Custom Styling */
     &.MuiFilledInput-root {
       background-color: ${({ theme }) => theme.colors.paper};
       &:hover {
@@ -319,6 +174,7 @@ const StyledTextField = styled(TextField)`
       }
     }
 
+    /* Outlined Variant Custom Styling */
     & .MuiOutlinedInput-notchedOutline {
       border-color: ${({ theme }) => theme.colors.ruleStrong};
     }
@@ -329,6 +185,7 @@ const StyledTextField = styled(TextField)`
       border-color: ${({ theme }) => theme.colors.ink};
     }
 
+    /* Standard Variant Custom Styling */
     &.MuiInput-underline:before {
       border-bottom-color: ${({ theme }) => theme.colors.ruleStrong};
     }
@@ -386,5 +243,151 @@ const SuccessMsg = styled.div`
   font-weight: 500;
   margin-top: 0.5rem;
 `;
+
+const Contact = ({ data }) => {
+  const [status, setStatus] = useState('');
+
+  const getIcon = (name) => {
+    switch (name.toLowerCase()) {
+      case 'github':   return <GitHubIcon />;
+      case 'linkedin': return <LinkedInIcon />;
+      case 'email':    return <EmailIcon />;
+      default:         return null;
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+
+    const formData = new FormData(e.target);
+    formData.append('access_key', 'c05f3b42-aecc-4a0d-8dd0-d2ef45312618');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setStatus('success');
+        e.target.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <Section id="contact">
+      <Inner>
+        <ContactGrid>
+
+          {/* ── Left side: text reveal ── */}
+          <div>
+            <RevealClip>
+              <Eyebrow as={RevealText} delay="0.05s">{data.eyebrow}</Eyebrow>
+            </RevealClip>
+
+            <RevealClip>
+              <Heading as={RevealText} delay="0.18s">{data.heading}</Heading>
+            </RevealClip>
+
+            <RevealClip>
+              <Body as={RevealText} delay="0.30s">{data.body}</Body>
+            </RevealClip>
+
+            <RevealClip>
+              <ContactIcons as={RevealText} delay="0.42s">
+                {data.socials.map((s) => (
+                  <IconLink
+                    key={s.name}
+                    href={s.link}
+                    target={s.link.startsWith('http') ? '_blank' : undefined}
+                    rel={s.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    aria-label={s.name}
+                  >
+                    {getIcon(s.name)}
+                  </IconLink>
+                ))}
+              </ContactIcons>
+            </RevealClip>
+          </div>
+
+          {/* ── Right side: form fields ── */}
+          <Form onSubmit={handleSubmit}>
+
+            {/* NAME + EMAIL row */}
+            <AnimatedField delay="0.15s">
+              <FormRow>
+                <StyledTextField 
+                  id="name" 
+                  name="name" 
+                  label="Name" 
+                  variant="outlined" 
+                  required 
+                />
+                <StyledTextField 
+                  id="email" 
+                  name="email" 
+                  label="Email" 
+                  type="email" 
+                  variant="outlined" 
+                  required 
+                />
+              </FormRow>
+            </AnimatedField>
+
+            {/* SUBJECT */}
+            <AnimatedField delay="0.30s">
+              <StyledTextField 
+                id="subject" 
+                name="subject" 
+                label="Subject" 
+                variant="outlined" 
+                required 
+              />
+            </AnimatedField>
+
+            {/* MESSAGE */}
+            <AnimatedField delay="0.45s">
+              <StyledTextField 
+                id="message" 
+                name="message" 
+                label="Message" 
+                variant="outlined" 
+                multiline 
+                rows={4} 
+                required 
+              />
+            </AnimatedField>
+
+            {/* SUBMIT */}
+            <FormSubmit type="submit" disabled={status === 'sending'}>
+              {status === 'sending' ? 'Sending...' : (
+                <>Send Message <SendIcon /></>
+              )}
+            </FormSubmit>
+
+            {status === 'success' && (
+              <SuccessMsg>
+                <CheckCircleOutlineIcon /> Message sent successfully!
+              </SuccessMsg>
+            )}
+            {status === 'error' && (
+              <SuccessMsg style={{ color: '#ef4444' }}>
+                Oops! Something went wrong. Please try again.
+              </SuccessMsg>
+            )}
+          </Form>
+
+        </ContactGrid>
+      </Inner>
+    </Section>
+  );
+};
 
 export default Contact;
