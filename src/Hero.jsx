@@ -1,12 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import EmailIcon from '@mui/icons-material/Email';
 import DescriptionIcon from '@mui/icons-material/Description';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-
-const orbFloat = keyframes`
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-`;
 
 const spinCw = keyframes`
   to { transform: rotate(360deg); }
@@ -14,11 +8,6 @@ const spinCw = keyframes`
 
 const spinCcw = keyframes`
   to { transform: rotate(-360deg); }
-`;
-
-const dotPulse = keyframes`
-  0%, 100% { transform: scale(1); opacity: 0.5; }
-  50% { transform: scale(1.5); opacity: 1; }
 `;
 
 const HeroSection = styled.section`
@@ -203,46 +192,30 @@ const HeroImage = styled.img`
   transform: scale(1.02);
 `;
 
-const OrbBadge = styled.div`
-  position: absolute;
-  bottom: 10%;
-  left: -5%;
-  background: ${({ theme }) => theme.colors.paper};
-  border: 1px solid ${({ theme }) => theme.colors.ruleStrong};
-  padding: 0.75rem 1.25rem;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-  z-index: 10;
-`;
-
-const OrbBadgeText = styled.p`
-  font-family: ${({ theme }) => theme.fonts.mono};
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  color: ${({ theme }) => theme.colors.ink2};
-  white-space: nowrap;
-`;
-
 const Hero = ({ data }) => {
+  const nameParts = data.name.split(' ');
+  const firstName = nameParts[0];
+  const lastName = nameParts.slice(1).join(' ');
+
   return (
     <HeroSection id="hero">
       <HeroGrid>
         <HeroLeft>
-          <HeroTag className="fu d1">{data.tagline}</HeroTag>
+          <HeroTag className="fu d1">{data.title}</HeroTag>
           <HeroTitle className="fu d2">
-            <span>{data.name.split(' ')[0]}</span>
-            <HeroName>{data.name.split(' ')[1]}</HeroName>
+            <span>{firstName}</span>
+            {lastName && <HeroName>{lastName}</HeroName>}
           </HeroTitle>
           <HeroDesc className="fu d3">{data.description}</HeroDesc>
           <HeroBtns className="fu d4">
-            <Button href="#contact" $variant="fill">
+            <Button href={`mailto:${data.email}`} $variant="fill">
               Get in touch <EmailIcon />
             </Button>
-            <Button href={data.cvLink} target="_blank" rel="noopener">
+            <Button 
+              href={data.cvLink} 
+              target={data.cvLink !== '#' ? "_blank" : undefined}
+              rel={data.cvLink !== '#' ? "noopener noreferrer" : undefined}
+            >
               View CV <DescriptionIcon />
             </Button>
           </HeroBtns>
