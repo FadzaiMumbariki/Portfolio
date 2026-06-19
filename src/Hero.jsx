@@ -13,8 +13,8 @@ const spinCcw = keyframes`
 const HeroSection = styled.section`
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  padding: calc(${({ theme }) => theme.sizes.navH} + 5rem) ${({ theme }) => theme.sizes.pad} 6rem;
+  align-items: flex-start;
+  padding: calc(${({ theme }) => theme.sizes.navH} + 2rem) ${({ theme }) => theme.sizes.pad} 6rem;
   max-width: calc(${({ theme }) => theme.sizes.max} + ${({ theme }) => theme.sizes.pad} * 2);
   margin: 0 auto;
   padding-bottom: 4rem;
@@ -25,9 +25,9 @@ const HeroGrid = styled.div`
   margin: 0 auto;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 460px;
+  grid-template-columns: 1fr 580px;
   gap: 3rem;
-  align-items: center;
+  align-items: start;
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
@@ -149,9 +149,9 @@ const Button = styled.a`
 const HeroRight = styled.div`
   position: relative;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  height: 460px;
+  height: 580px;
 
   @media (max-width: 960px) {
     height: auto;
@@ -161,8 +161,8 @@ const HeroRight = styled.div`
 
 const HeroImageWrap = styled.div`
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: 480px;
+  height: 480px;
   border-radius: 50%;
   overflow: hidden;
   background: ${({ theme }) =>

@@ -18,9 +18,9 @@ const Inner = styled.div`
 
 const AboutGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.6fr;
   gap: 5rem;
-  align-items: start;
+  align-items: stretch;
 
   @media (max-width: 960px) {
     grid-template-columns: 1fr;
@@ -154,6 +154,7 @@ const CertBy = styled.span`
 const AboutImageWrap = styled.div`
   position: relative;
   width: 100%;
+  height: 100%;
   
   &::after {
     content: '';
@@ -166,6 +167,8 @@ const AboutImageWrap = styled.div`
 
 const AboutImage = styled.img`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
   border: 1px solid ${({ theme }) => theme.colors.ruleStrong};
   filter: grayscale(20%);
