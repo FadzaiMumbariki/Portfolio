@@ -9,7 +9,7 @@ export const portfolioData = {
     image: "./assets/116606f4-5e39-4b70-9676-bd9e0b85df3b.jpeg",
     imageAlt: "Fadzai Mumbariki - Professional Portfolio",
     email: "fadzaimumbariki@gmail.com",
-    cvLink: "#",
+    cvLink: "/assets/CV.pdf",
   },
   about: {
     eyebrow: "01 — PROFESSIONAL SUMMARY",
