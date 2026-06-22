@@ -13,7 +13,7 @@ export const portfolioData = {
   about: {
     eyebrow: "01 — PROFILE",
     heading: "About Me",
-    bio1: "Software Engineering student at Uncommon.org. Passionate about building responsive, high-performance web apps with clean UI/UX.",
+    bio1: "I am a Software Engineering student and aspiring Full-Stack Developer with a passion for creating modern, user-friendly, and responsive web applications. I enjoy solving problems through technology, learning new skills, and building digital experiences that make a positive impact.",
     bio2: "Currently pursuing Software Engineering at Uncommon.org while also studying Digital Marketing. Experienced in building real-world projects including e-commerce sites, weather apps, and brand content strategies.",
     skills: [
       "React.js / Next.js",
@@ -26,9 +26,9 @@ export const portfolioData = {
       "Problem Solving",
     ],
     certifications: [
-      { name: "Software Engineering", by: "Uncommon.org (2026-Present)" },
-      { name: "Digital Marketing", by: "Uncommon.org (2026-Present)" },
-      { name: "Student Volunteer", by: "Scratch (2026-Present)" },
+      { name: "Design Thinking", by: "Certification" },
+      { name: "Fundamentals of UI", by: "Certification" },
+      { name: "Enhancing UX Workflow", by: "Certification" },
     ],
   },
   projects: projects,
