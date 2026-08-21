@@ -11,7 +11,7 @@ export const portfolioData = {
     phone: "+263 781 659 593",
     location: "Bulawayo",
     website: "https://fadzai-portfolio.vercel.app/",
-    cvLink: "/assets/CV.pdf",
+    cvLink: "./assets/CV.pdf",
   },
   about: {
     eyebrow: "01 — PROFILE",

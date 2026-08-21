@@ -6,6 +6,7 @@ import About from './About';
 import Projects from './Projects';
 import Contact from './Contact';
 import Footer from './Footer';
+import CVPage from './CVPage';
 import { portfolioData } from './portfolioData';
 import { lightTheme, darkTheme } from './Theme';
 import { GlobalStyles } from './GlobalStyles';
@@ -15,6 +16,7 @@ function App() {
     const saved = localStorage.getItem('theme');
     return saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
+  const [showCV, setShowCV] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
@@ -26,14 +28,20 @@ function App() {
     <ThemeProvider theme={isDarkMode ? darkTheme : lightTheme}>
       <GlobalStyles />
       <AppContainer>
-        <Nav isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
-        <Main>
-          <Hero data={portfolioData.hero} />
-          <About data={portfolioData.about} />
-          <Projects data={portfolioData.projects} />
-          <Contact data={portfolioData.contact} />
-        </Main>
-        <Footer />
+        {!showCV ? (
+          <>
+            <Nav isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+            <Main>
+              <Hero data={portfolioData.hero} onViewCV={() => setShowCV(true)} />
+              <About data={portfolioData.about} />
+              <Projects data={portfolioData.projects} />
+              <Contact data={portfolioData.contact} />
+            </Main>
+            <Footer />
+          </>
+        ) : (
+          <CVPage onBack={() => setShowCV(false)} />
+        )}
       </AppContainer>
     </ThemeProvider>
   );

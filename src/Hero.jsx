@@ -192,7 +192,7 @@ const HeroImage = styled.img`
   transform: scale(1.02);
 `;
 
-const Hero = ({ data }) => {
+const Hero = ({ data, onViewCV }) => {
   const nameParts = data.name.split(' ');
   const firstName = nameParts[0];
   const lastName = nameParts.slice(1).join(' ');
@@ -211,11 +211,7 @@ const Hero = ({ data }) => {
             <Button href={`mailto:${data.email}`} $variant="fill">
               Get in touch <EmailIcon />
             </Button>
-            <Button 
-              href={data.cvLink} 
-              target={data.cvLink !== '#' ? "_blank" : undefined}
-              rel={data.cvLink !== '#' ? "noopener noreferrer" : undefined}
-            >
+            <Button as="button" type="button" onClick={onViewCV}>
               View CV <DescriptionIcon />
             </Button>
           </HeroBtns>
