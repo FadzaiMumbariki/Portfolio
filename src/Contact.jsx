@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
-import { TextField } from '@mui/material'; // <-- Added TextField import
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 import SendIcon from '@mui/icons-material/Send';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircle';
+import TextField from '@mui/material/TextField';
 
 const slideUp = keyframes`
   from {
@@ -112,7 +112,7 @@ const IconLink = styled.a`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.5rem;
   background: ${({ theme }) => theme.colors.paper2};
   padding: 2rem;
   border-radius: 8px;
@@ -135,66 +135,51 @@ const AnimatedField = styled.div`
   animation-delay: ${({ delay }) => delay || '0s'};
 `;
 
-/* ── Custom Styled wrapper for Material UI's TextField ── */
 const StyledTextField = styled(TextField)`
   width: 100%;
 
-  /* Optional overrides to blend MUI inputs seamlessly with your Theme variables */
   & .MuiInputLabel-root {
-    font-family: ${({ theme }) => theme.fonts.mono};
-    font-size: 0.75rem;
+    font-family: ${({ theme }) => theme.fonts.mono} !important;
+    font-size: 0.75rem !important;
     letter-spacing: 0.05em;
     color: ${({ theme }) => theme.colors.ink3};
     
     &.Mui-focused {
-      color: ${({ theme }) => theme.colors.ink};
+      color: ${({ theme }) => theme.colors.ink} !important;
     }
   }
 
   & .MuiInputBase-root {
-    font-family: ${({ theme }) => theme.fonts.display};
-    font-size: 0.85rem;
+    font-family: ${({ theme }) => theme.fonts.display} !important;
+    font-size: 0.85rem !important;
     color: ${({ theme }) => theme.colors.ink};
     background: ${({ theme }) => theme.colors.paper};
+  }
 
-    /* Filled Variant Custom Styling */
-    &.MuiFilledInput-root {
-      background-color: ${({ theme }) => theme.colors.paper};
-      &:hover {
-        background-color: ${({ theme }) => theme.colors.paper};
-      }
-      &.Mui-focused {
-        background-color: ${({ theme }) => theme.colors.paper};
-      }
-      &:before {
-        border-bottom-color: ${({ theme }) => theme.colors.ruleStrong};
-      }
-      &:after {
-        border-bottom-color: ${({ theme }) => theme.colors.ink};
-      }
-    }
-
-    /* Outlined Variant Custom Styling */
-    & .MuiOutlinedInput-notchedOutline {
+  & .MuiOutlinedInput-root {
+    & fieldset {
       border-color: ${({ theme }) => theme.colors.ruleStrong};
     }
-    &:hover .MuiOutlinedInput-notchedOutline {
+    &:hover fieldset {
       border-color: ${({ theme }) => theme.colors.ink2};
     }
-    &.Mui-focused .MuiOutlinedInput-notchedOutline {
-      border-color: ${({ theme }) => theme.colors.ink};
+    &.Mui-focused fieldset {
+      border-color: ${({ theme }) => theme.colors.ink} !important;
     }
+  }
 
-    /* Standard Variant Custom Styling */
-    &.MuiInput-underline:before {
-      border-bottom-color: ${({ theme }) => theme.colors.ruleStrong};
+  & .MuiFilledInput-root {
+    background: ${({ theme }) => theme.colors.paper};
+    &:hover {
+      background: ${({ theme }) => theme.colors.paper};
     }
-    &.MuiInput-underline:hover:not(.Mui-disabled):before {
-      border-bottom-color: ${({ theme }) => theme.colors.ink2};
-    }
-    &.MuiInput-underline:after {
+    &:after {
       border-bottom-color: ${({ theme }) => theme.colors.ink};
     }
+  }
+
+  & .MuiInput-underline:after {
+    border-bottom-color: ${({ theme }) => theme.colors.ink};
   }
 `;
 
@@ -249,10 +234,14 @@ const Contact = ({ data }) => {
 
   const getIcon = (name) => {
     switch (name.toLowerCase()) {
-      case 'github':   return <GitHubIcon />;
-      case 'linkedin': return <LinkedInIcon />;
-      case 'email':    return <EmailIcon />;
-      default:         return null;
+      case 'github':
+        return <GitHubIcon />;
+      case 'linkedin':
+        return <LinkedInIcon />;
+      case 'email':
+        return <EmailIcon />;
+      default:
+        return null;
     }
   };
 
@@ -285,8 +274,6 @@ const Contact = ({ data }) => {
     <Section id="contact">
       <Inner>
         <ContactGrid>
-
-          {/* ── Left side: text reveal ── */}
           <div>
             <RevealClip>
               <Eyebrow as={RevealText} delay="0.05s">{data.eyebrow}</Eyebrow>
@@ -306,8 +293,8 @@ const Contact = ({ data }) => {
                   <IconLink
                     key={s.name}
                     href={s.link}
-                    target={s.link.startsWith('http') ? '_blank' : undefined}
-                    rel={s.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={s.name}
                   >
                     {getIcon(s.name)}
@@ -317,58 +304,34 @@ const Contact = ({ data }) => {
             </RevealClip>
           </div>
 
-          {/* ── Right side: form fields ── */}
           <Form onSubmit={handleSubmit}>
-
-            {/* NAME + EMAIL row */}
             <AnimatedField delay="0.15s">
               <FormRow>
-                <StyledTextField 
-                  id="name" 
-                  name="name" 
-                  label="Name" 
-                  variant="outlined" 
-                  required 
-                />
-                <StyledTextField 
-                  id="email" 
-                  name="email" 
-                  label="Email" 
-                  type="email" 
-                  variant="outlined" 
-                  required 
-                />
+                <StyledTextField variant="standard" label="Username" name="username" required />
+                <StyledTextField variant="outlined" label="Email" name="email" type="email" required />
               </FormRow>
             </AnimatedField>
 
-            {/* SUBJECT */}
             <AnimatedField delay="0.30s">
-              <StyledTextField 
-                id="subject" 
-                name="subject" 
-                label="Subject" 
-                variant="outlined" 
-                required 
-              />
+              <StyledTextField variant="filled" label="Password" name="password" type="password" required />
             </AnimatedField>
 
-            {/* MESSAGE */}
             <AnimatedField delay="0.45s">
-              <StyledTextField 
-                id="message" 
-                name="message" 
-                label="Message" 
-                variant="outlined" 
-                multiline 
-                rows={4} 
-                required 
+              <StyledTextField
+                variant="outlined"
+                label="Message"
+                name="message"
+                multiline
+                rows={4}
+                required
               />
             </AnimatedField>
 
-            {/* SUBMIT */}
             <FormSubmit type="submit" disabled={status === 'sending'}>
               {status === 'sending' ? 'Sending...' : (
-                <>Send Message <SendIcon /></>
+                <>
+                  Send Message <SendIcon />
+                </>
               )}
             </FormSubmit>
 
@@ -383,7 +346,6 @@ const Contact = ({ data }) => {
               </SuccessMsg>
             )}
           </Form>
-
         </ContactGrid>
       </Inner>
     </Section>
