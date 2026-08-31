@@ -20,7 +20,7 @@
   {
     "name": "Old Mutual",
     "cat": "Business",
-    "desc": "A modern weather application that provides real-time weather updates with a clean and responsive UI..",
+    "desc": "A modern and user-focused redesign of the Old Mutual Zimbabwe website, created to improve the digital experience and make financial and insurance services easier to explore.",
     "tech": ["React",  "Vite ", "Styled Components"],
     "github": "https://github.com/FadzaiMumbariki/old_mutual.git",
     "demo": " https://old-mutual-nine.vercel.app/",
@@ -43,6 +43,14 @@
     "github": "https://github.com/FadzaiMumbariki/my_portfolio.git",
     "demo": " https://fadzaimumbariki.github.io/my_portfolio/",
     "img": "/assets/screenshot_2026-06-09_141257.png"
+  },
+  {
+    "name": "Personal Portfolio",
+    "cat": "Personal",
+    "desc": "Popees is a modern and user-friendly e-commerce platform designed for shopping children's clothing. The website provides a smooth shopping experience with product browsing, category filtering, detailed product pages, and shopping cart functionality..",
+    "tech": ["Tailwind", "Next.js", "Supabase"],
+    "github": "https://github.com/thembiencube08-dotcom/kidversee.git",
+    "demo": " https://kidversee-lbw5.vercel.app/",
+    "img": "/assets/Screenshot 2026-08-31 114129.png"
   }
-  
 ]
