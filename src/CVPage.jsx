@@ -123,7 +123,7 @@ const CVPage = ({ onBack }) => {
       <ViewerWrap>
         <Viewer
           src="./assets/CV.pdf"
-          title="fadzai mubariki.cv"
+          title="fadzai mumbariki.cv"
           loading="lazy"
         />
       </ViewerWrap>
