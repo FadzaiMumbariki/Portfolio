@@ -87,7 +87,7 @@ export const portfolioData = {
     references: [
       {
         name: "Tonderai Kawere",
-        email: "tonderaikawere@gmail.com",
+        email: "tonderai@uncommon.org",
         phone: "0782528050",
       },
       {
